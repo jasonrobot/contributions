@@ -1,0 +1,18 @@
+name: contributions
+version: 0.1.0
+
+authors:
+  - Jason Howell <jasonrobot64@gmail.com>
+
+targets:
+  tmp:
+    main: src/contributions.cr
+
+dependencies:
+  toml:
+    github: manastech/crystal-toml
+    branch: master    
+
+crystal: 0.25.0
+
+license: GPLv3
