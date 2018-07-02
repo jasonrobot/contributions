@@ -2,11 +2,13 @@ require "http/client"
 require "./Contributions/GithubUser"
 require "./Contributions/GithubEvent"
 
-def push_events_for_user(username)
+# Returns a list of events of type "PushEvent" for a given user
+def push_events_for_user(username : String) : Array(GithubEvent)
   response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
   Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
 end
 
+# Run the commit counter
 def main
   user_list : Array(GithubUser) = File.open("users.yml") do |file|
     Array(GithubUser).from_yaml file
