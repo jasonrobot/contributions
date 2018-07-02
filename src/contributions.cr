@@ -1,20 +1,6 @@
 require "http/client"
-require "json"
-require "yaml"
-
-class GithubUser
-  YAML.mapping(
-    name: String,
-    username: String,
-  )
-end
-
-class GithubEvent
-  JSON.mapping(
-    type: String,
-    created_at: String,
-  )
-end
+require "./GithubUser"
+require "./GithubEvent"
 
 def get_user_events( username )
   response_body = HTTP::Client.get( "https://api.github.com/users/#{username}/events" ).body
