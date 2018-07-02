@@ -17,20 +17,19 @@ def main
     repo : Hash(Int32, Int32) = Hash(Int32, Int32).new
     repo_names = Hash(Int32, String).new
     
-    puts "#{user.name}: #{user.username}"
+    puts "#{user.name}: https://github.com/#{user.username}"
+    
     get_user_events(user.username).select {|event| event.type == "PushEvent" }.each do |event|
-      # puts "At #{event.created_at} #{user.name} did #{event.type}"
 
       commit_count = 0
-
+      repo_id = event.repo.id
+      
       # smart casts being weird with JSON nilables, gotta cast manually
       # its ok because we just need the size anyways
       unless event.payload.commits.nil?
         commit_count = event.payload.commits.as(Array(JSON::Any)).size
       end
 
-      repo_id = event.repo.id
-      
       if repo.has_key? repo_id
         repo[repo_id] += commit_count
       else
@@ -43,8 +42,10 @@ def main
     end
     
     repo.each do |repo_id, commit_count|
-      puts "#{user.name} pushed #{commit_count} commits to #{repo_names[repo_id]}"
+      puts "Pushed #{commit_count} commits to https://github.com/#{repo_names[repo_id]}"
     end
+
+    puts ""
   end
 end
 
