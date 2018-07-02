@@ -1,6 +1,6 @@
 require "http/client"
-require "./GithubUser"
-require "./GithubEvent"
+require "./Contributions/GithubUser"
+require "./Contributions/GithubEvent"
 
 def get_user_events( username )
   response_body = HTTP::Client.get( "https://api.github.com/users/#{username}/events" ).body
