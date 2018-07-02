@@ -17,9 +17,14 @@ def main
     puts "#{user.name}: #{user.username}"
     get_user_events(user.username).select {|event| event.type == "PushEvent" }.each do |event|
       puts "At #{event.created_at} #{user.name} did #{event.type}"
+      
+      # smart casts being weird with JSON nilables, gotta cast manually
+      # its ok because we just need the size anyways
+      unless event.payload.commits.nil?
+        puts event.payload.commits.as(Array(JSON::Any)).size
+      end
     end
   end
 end
-
 
 main
