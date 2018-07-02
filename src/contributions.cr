@@ -2,28 +2,26 @@ require "http/client"
 require "./Contributions/GithubUser"
 require "./Contributions/GithubEvent"
 
-
-def get_user_events( username )
-  response_body = HTTP::Client.get( "https://api.github.com/users/#{username}/events" ).body
-  Array( GithubEvent ).from_json( response_body )
+def push_events_for_user(username)
+  response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
+  Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
 end
 
 def main
-  user_list : Array( GithubUser ) = File.open( "users.yml" ) do |file|
-    Array( GithubUser ).from_yaml file
+  user_list : Array(GithubUser) = File.open("users.yml") do |file|
+    Array(GithubUser).from_yaml file
   end
 
   user_list.each do |user|
     repo : Hash(Int32, Int32) = Hash(Int32, Int32).new
     repo_names = Hash(Int32, String).new
-    
-    puts "#{user.name}: https://github.com/#{user.username}"
-    
-    get_user_events(user.username).select {|event| event.type == "PushEvent" }.each do |event|
 
+    puts "#{user.name}: https://github.com/#{user.username}"
+
+    push_events_for_user(user.username).each do |event|
       commit_count = 0
       repo_id = event.repo.id
-      
+
       # smart casts being weird with JSON nilables, gotta cast manually
       # its ok because we just need the size anyways
       unless event.payload.commits.nil?
@@ -40,7 +38,7 @@ def main
         repo_names[repo_id] = event.repo.name
       end
     end
-    
+
     repo.each do |repo_id, commit_count|
       puts "Pushed #{commit_count} commits to https://github.com/#{repo_names[repo_id]}"
     end

@@ -11,7 +11,7 @@ end
 class Actor
   JSON.mapping(
     id: Int32,
-    login: String,     
+    login: String,
   )
 end
 
