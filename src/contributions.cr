@@ -18,7 +18,9 @@ def main
     repo : Hash(Int32, Int32) = Hash(Int32, Int32).new
     repo_names = Hash(Int32, String).new
 
-    puts "#{user.name}: https://github.com/#{user.username}"
+    username : String = user.name || user.username
+
+    puts "#{user.to_s}: https://github.com/#{user.username}"
 
     push_events_for_user(user.username).each do |event|
       commit_count = 0

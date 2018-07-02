@@ -89,6 +89,9 @@
 
   <p>Represents a github user</p>
 
+<p>name is their personal name to display in the output, and is optional
+username is the name of their github account</p>
+
 
 
 
@@ -105,7 +108,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/jasonrobot/contributions/blob/3046b5572e15c90956f75571672b254a6443812b/src/Contributions/GithubUser.cr#L4" target="_blank">Contributions/GithubUser.cr</a>
+      <a href="https://github.com/jasonrobot/contributions/blob/e84e13d78e1a1ad7267fd2d170d43caa7d04c3c0/src/Contributions/GithubUser.cr#L7" target="_blank">Contributions/GithubUser.cr</a>
     
     <br/>
   
@@ -137,12 +140,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#name%3AString%3F-instance-method" class="signature"><strong>#name</strong> : String?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name%3D%28_name%3AString%29-instance-method" class="signature"><strong>#name=</strong>(_name : String)</a>
+        <a href="#name%3D%28_name%3AString%3F%29-instance-method" class="signature"><strong>#name=</strong>(_name : String?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%3AIO%29-instance-method" class="signature"><strong>#to_s</strong>(io : IO)</a>
         
       </li>
     
@@ -229,12 +237,12 @@
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="name:String-instance-method">
+    <div class="entry-detail" id="name:String?-instance-method">
       <div class="signature">
         
-        def <strong>name</strong> : String
+        def <strong>name</strong> : String?
 
-        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#name%3AString%3F-instance-method">#</a>
       </div>
       
       <br/>
@@ -243,16 +251,32 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="name=(_name:String)-instance-method">
+    <div class="entry-detail" id="name=(_name:String?)-instance-method">
       <div class="signature">
         
-        def <strong>name=</strong>(_name : String)
+        def <strong>name=</strong>(_name : String?)
 
-        <a class="method-permalink" href="#name%3D%28_name%3AString%29-instance-method">#</a>
+        <a class="method-permalink" href="#name%3D%28_name%3AString%3F%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : IO)
+
+        <a class="method-permalink" href="#to_s%28io%3AIO%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jasonrobot/contributions/blob/e84e13d78e1a1ad7267fd2d170d43caa7d04c3c0/src/Contributions/GithubUser.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
