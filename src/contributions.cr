@@ -2,10 +2,26 @@ require "http/client"
 require "./Contributions/GithubUser"
 require "./Contributions/GithubEvent"
 
-# Returns a list of events of type "PushEvent" for a given user
-def push_events_for_user(username : String) : Array(GithubEvent)
-  response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
-  Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
+# Track events for a github user.
+class GithubTracker
+  def initialize(@user : GithubUser, @start_time : Time, @end_time : Time)
+    @events = push_events_for_user(@user)
+  end
+
+  # Returns a list of events of type "PushEvent" for a given user
+  private def push_events_for_user(username : String) : Array(GithubEvent)
+    response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
+    Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
+  end
+
+  # Filter events in a Time range.
+  def events_in_date_range(from : Time, to : Time) : Array(GithubEvent)
+    
+  end
+
+  def get_repo_name(repo_id : Int32) : String
+  end
+
 end
 
 # Run the commit counter

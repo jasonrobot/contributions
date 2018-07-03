@@ -26,6 +26,9 @@ end
 
 # The event object that is returned from the github events API
 class GithubEvent
+
+  TIME_FORMAT = Time:Format.new 
+  
   JSON.mapping(
     type: String,
     created_at: String,
@@ -34,4 +37,5 @@ class GithubEvent
     actor: Actor,
     payload: {type: Payload, nilable: false},
   )
+
 end
