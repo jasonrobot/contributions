@@ -11,7 +11,7 @@ USERS_YML := users.yml
 TARGET := github-tracker
 
 LOCAL_BIN := ~/bin/
-CONFIG_DIR := ~/.config/github_tracker/
+CONFIG_DIR := ~/.config/github-tracker/
 
 build: $(SRC_FILES)
 	$(CC) build $(MAIN_FILE) -o $(TARGET)

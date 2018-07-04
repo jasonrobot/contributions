@@ -5,8 +5,9 @@ require "./Contributions/GithubTracker"
 
 def get_users_file() : String
   users_file_paths = %w(users.yml ~/.config/github-tracker/users.yml users.yaml ~/.config/github-tracker/users.yaml)
+  users_file_paths.map! {|path| File.expand_path path}
   users_file_paths.select do |path|
-    path if File.exists? path
+    path if File.exists?(path)
   end[0]? ||
     raise "File not found: " + users_file_paths.reduce {|a, b| a + " " + b}
 end
