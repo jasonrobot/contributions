@@ -25,13 +25,20 @@ class Payload
 end
 
 # The event object that is returned from the github events API
-class GithubEvent
+class GithubEvent  
   JSON.mapping(
     type: String,
-    created_at: String,
+    #format is 2018-07-03T05:25:20Z
+    #format is YYYY-MM-DDTHH:MM:SSZ (T and Z are literal)
+    time: {
+      type: Time,
+      key: "created_at",
+      converter: Time::Format.new("%Y-%m-%dT%H:%M:%SZ", Time::Location::UTC),
+      default: Time.utc_now,
+    },
     id: String,
     repo: Repo,
     actor: Actor,
-    payload: {type: Payload, nilable: false},
+    payload: Payload?,
   )
 end
