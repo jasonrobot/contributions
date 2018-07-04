@@ -51,6 +51,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/jasonrobot/contributions/GithubTracker" data-name="githubtracker">
+      <a href="GithubTracker.html">GithubTracker</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/jasonrobot/contributions/GithubUser" data-name="githubuser">
       <a href="GithubUser.html">GithubUser</a>
       
@@ -105,7 +110,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/jasonrobot/contributions/blob/38d5b4a94acd368944682828525ca0d6fd281d51/src/Contributions/GithubEvent.cr#L28" target="_blank">Contributions/GithubEvent.cr</a>
+      <a href="https://github.com/jasonrobot/contributions/blob/69df8c26330036f7d4c68cfefe118518fde87391/src/Contributions/GithubEvent.cr#L28" target="_blank">Contributions/GithubEvent.cr</a>
     
     <br/>
   
@@ -142,16 +147,6 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#created_at%3AString-instance-method" class="signature"><strong>#created_at</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#created_at%3D%28_created_at%3AString%29-instance-method" class="signature"><strong>#created_at=</strong>(_created_at : String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#id%3AString-instance-method" class="signature"><strong>#id</strong> : String</a>
         
       </li>
@@ -162,12 +157,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#payload%3APayload-instance-method" class="signature"><strong>#payload</strong> : Payload</a>
+        <a href="#payload%3A%3A%3AUnion%28Payload%2CNil%29-instance-method" class="signature"><strong>#payload</strong> : ::Union(Payload, Nil)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#payload%3D%28_payload%3APayload%29-instance-method" class="signature"><strong>#payload=</strong>(_payload : Payload)</a>
+        <a href="#payload%3D%28_payload%3A%3A%3AUnion%28Payload%2CNil%29%29-instance-method" class="signature"><strong>#payload=</strong>(_payload : ::Union(Payload, Nil))</a>
         
       </li>
     
@@ -178,6 +173,16 @@
     
       <li class="entry-summary">
         <a href="#repo%3D%28_repo%3ARepo%29-instance-method" class="signature"><strong>#repo=</strong>(_repo : Repo)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#time%3ATime-instance-method" class="signature"><strong>#time</strong> : Time</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#time%3D%28_time%3ATime%29-instance-method" class="signature"><strong>#time=</strong>(_time : Time)</a>
         
       </li>
     
@@ -278,34 +283,6 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="created_at:String-instance-method">
-      <div class="signature">
-        
-        def <strong>created_at</strong> : String
-
-        <a class="method-permalink" href="#created_at%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="created_at=(_created_at:String)-instance-method">
-      <div class="signature">
-        
-        def <strong>created_at=</strong>(_created_at : String)
-
-        <a class="method-permalink" href="#created_at%3D%28_created_at%3AString%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
     <div class="entry-detail" id="id:String-instance-method">
       <div class="signature">
         
@@ -334,12 +311,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="payload:Payload-instance-method">
+    <div class="entry-detail" id="payload:::Union(Payload,Nil)-instance-method">
       <div class="signature">
         
-        def <strong>payload</strong> : <a href="Payload.html">Payload</a>
+        def <strong>payload</strong> : ::Union(<a href="Payload.html">Payload</a>, Nil)
 
-        <a class="method-permalink" href="#payload%3APayload-instance-method">#</a>
+        <a class="method-permalink" href="#payload%3A%3A%3AUnion%28Payload%2CNil%29-instance-method">#</a>
       </div>
       
       <br/>
@@ -348,12 +325,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="payload=(_payload:Payload)-instance-method">
+    <div class="entry-detail" id="payload=(_payload:::Union(Payload,Nil))-instance-method">
       <div class="signature">
         
-        def <strong>payload=</strong>(_payload : <a href="Payload.html">Payload</a>)
+        def <strong>payload=</strong>(_payload : ::Union(<a href="Payload.html">Payload</a>, Nil))
 
-        <a class="method-permalink" href="#payload%3D%28_payload%3APayload%29-instance-method">#</a>
+        <a class="method-permalink" href="#payload%3D%28_payload%3A%3A%3AUnion%28Payload%2CNil%29%29-instance-method">#</a>
       </div>
       
       <br/>
@@ -382,6 +359,34 @@
         def <strong>repo=</strong>(_repo : <a href="Repo.html">Repo</a>)
 
         <a class="method-permalink" href="#repo%3D%28_repo%3ARepo%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="time:Time-instance-method">
+      <div class="signature">
+        
+        def <strong>time</strong> : Time
+
+        <a class="method-permalink" href="#time%3ATime-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="time=(_time:Time)-instance-method">
+      <div class="signature">
+        
+        def <strong>time=</strong>(_time : Time)
+
+        <a class="method-permalink" href="#time%3D%28_time%3ATime%29-instance-method">#</a>
       </div>
       
       <br/>

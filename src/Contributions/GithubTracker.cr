@@ -29,9 +29,6 @@ class GithubTracker
         @repo_commits[repo_id] = 1
       end
     end
-
-    # puts @start_time
-    # puts @end_time
   end
 
   getter repo_commits
@@ -49,6 +46,8 @@ class GithubTracker
     end
   end
 
+  # Get an array of tuples with the repo Id and the count of commits.
+  # Useful for printing results.
   def commits_in_repos : Array(Tuple(Int32, Int32))
     Array(Tuple(Int32, Int32)).new do |array|
       @repo_commits.each do |repo_id, commit_count|
@@ -56,7 +55,8 @@ class GithubTracker
       end
     end
   end
-  
+
+  # Given a REPO_ID, get the name of the repo
   def repo_name(repo_id : Int32) : String
     @repo_names[repo_id]
   end

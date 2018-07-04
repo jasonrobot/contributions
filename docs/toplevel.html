@@ -51,6 +51,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/jasonrobot/contributions/GithubTracker" data-name="githubtracker">
+      <a href="GithubTracker.html">GithubTracker</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/jasonrobot/contributions/GithubUser" data-name="githubuser">
       <a href="GithubUser.html">GithubUser</a>
       
@@ -109,16 +114,23 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#main-class-method" class="signature"><strong>main</strong></a>
+        <a href="#get_users_file%3AString-class-method" class="signature"><strong>get_users_file</strong> : String</a>
         
-          <div class="summary"><p>Run the commit counter</p></div>
+          <div class="summary"><p>Loads the users yaml file, or raises an exception to crash the app.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#push_events_for_user%28username%3AString%29%3AArray%28GithubEvent%29-class-method" class="signature"><strong>push_events_for_user</strong>(username : String) : Array(GithubEvent)</a>
+        <a href="#load_user_list%3AArray%28GithubUser%29-class-method" class="signature"><strong>load_user_list</strong> : Array(GithubUser)</a>
         
-          <div class="summary"><p>Returns a list of events of type "PushEvent" for a given user</p></div>
+          <div class="summary"><p>Parses the users yaml file into an array of GithubUser</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#main-class-method" class="signature"><strong>main</strong></a>
+        
+          <div class="summary"><p>Run the commit counter</p></div>
         
       </li>
     
@@ -139,6 +151,42 @@
 
   <h2>Method Detail</h2>
   
+    <div class="entry-detail" id="get_users_file:String-class-method">
+      <div class="signature">
+        
+        def <strong>get_users_file</strong> : String
+
+        <a class="method-permalink" href="#get_users_file%3AString-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Loads the users yaml file, or raises an exception to crash the app.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jasonrobot/contributions/blob/69df8c26330036f7d4c68cfefe118518fde87391/src/contributions.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="load_user_list:Array(GithubUser)-class-method">
+      <div class="signature">
+        
+        def <strong>load_user_list</strong> : Array(<a href="GithubUser.html">GithubUser</a>)
+
+        <a class="method-permalink" href="#load_user_list%3AArray%28GithubUser%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Parses the users yaml file into an array of GithubUser</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jasonrobot/contributions/blob/69df8c26330036f7d4c68cfefe118518fde87391/src/contributions.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="main-class-method">
       <div class="signature">
         
@@ -152,25 +200,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/jasonrobot/contributions/blob/38d5b4a94acd368944682828525ca0d6fd281d51/src/contributions.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="push_events_for_user(username:String):Array(GithubEvent)-class-method">
-      <div class="signature">
-        
-        def <strong>push_events_for_user</strong>(username : String) : Array(<a href="GithubEvent.html">GithubEvent</a>)
-
-        <a class="method-permalink" href="#push_events_for_user%28username%3AString%29%3AArray%28GithubEvent%29-class-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Returns a list of events of type "PushEvent" for a given user</p></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jasonrobot/contributions/blob/38d5b4a94acd368944682828525ca0d6fd281d51/src/contributions.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/jasonrobot/contributions/blob/69df8c26330036f7d4c68cfefe118518fde87391/src/contributions.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
