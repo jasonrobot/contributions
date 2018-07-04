@@ -1,18 +1,18 @@
 - name: Jason
   username: jasonrobot
-- name: Evan
-  username: 00firestar00
-- name: Shawn
-  username: shawnbaptista
-- name: Steve
-  username: sclayman
-- name: David
-  username: thedavidcarlson
-- name: Vinh
-  username: octovinh
-- name: Anthony
-  username: anthonybaldwin
-- name: Alex
-  username: thepostman
-- name: Kevin
-  username: imperialself
+# - name: Evan
+#   username: 00firestar00
+# - name: Shawn
+#   username: shawnbaptista
+# - name: Steve
+#   username: sclayman
+# - name: David
+#   username: thedavidcarlson
+# - name: Vinh
+#   username: octovinh
+# - name: Anthony
+#   username: anthonybaldwin
+# - name: Alex
+#   username: thepostman
+# - name: Kevin
+#   username: imperialself
