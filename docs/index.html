@@ -41,13 +41,28 @@
       
     </li>
   
-  <li class=" " data-id="github.com/jasonrobot/contributions/Actor" data-name="actor">
-      <a href="Actor.html">Actor</a>
+  <li class="parent " data-id="github.com/jasonrobot/contributions/GithubEvent" data-name="githubevent">
+      <a href="GithubEvent.html">GithubEvent</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/jasonrobot/contributions/GithubEvent/Actor" data-name="githubevent::actor">
+      <a href="GithubEvent/Actor.html">Actor</a>
       
     </li>
   
-  <li class=" " data-id="github.com/jasonrobot/contributions/GithubEvent" data-name="githubevent">
-      <a href="GithubEvent.html">GithubEvent</a>
+  <li class=" " data-id="github.com/jasonrobot/contributions/GithubEvent/Payload" data-name="githubevent::payload">
+      <a href="GithubEvent/Payload.html">Payload</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/jasonrobot/contributions/GithubEvent/Repo" data-name="githubevent::repo">
+      <a href="GithubEvent/Repo.html">Repo</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -58,16 +73,6 @@
   
   <li class=" " data-id="github.com/jasonrobot/contributions/GithubUser" data-name="githubuser">
       <a href="GithubUser.html">GithubUser</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/jasonrobot/contributions/Payload" data-name="payload">
-      <a href="Payload.html">Payload</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/jasonrobot/contributions/Repo" data-name="repo">
-      <a href="Repo.html">Repo</a>
       
     </li>
   
@@ -90,6 +95,28 @@ This is similar to the contributions graph GitHub provides, but there may be som
 <p>This is a rewrite in the Crystal language. This way it will get more upvotes on Reddit and HackerNews. Mostly though, I was just wanting to play with Crystal again and didnt put in the effort to make my own project.</p>
 
 <p><a href="https://jasonrobot.github.io/contributions/" target="_blank">Documentation is hosted here!</a></p>
+
+<h2>Building</h2>
+
+<p>You can use the makefile, or use crystal's own tools. The makefile just runs "crystal ..."</p>
+
+<h3>Build</h3>
+
+<pre><code>make 
+<span class="c">#or</span>
+crystal build src<span class="s">/contributions.cr</code></pre>
+
+<h3>Run</h3>
+
+<pre><code>make run
+<span class="c"># or</span>
+crystal build src<span class="s">/contributions.cr</code></pre>
+
+<h3>Install</h3>
+
+<p>By default, installs to ~/bin, and the config file to /.config/github-tracker/users.yml</p>
+
+<pre><code>make install</code></pre>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 require "yaml"
 
 # Represents a github user
-# 
+#
 # name is their personal name to display in the output, and is optional
 # username is the name of their github account
 class GithubUser

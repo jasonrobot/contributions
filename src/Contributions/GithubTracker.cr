@@ -9,20 +9,20 @@ class GithubTracker
   @events = Array(GithubEvent).new
   @repo_names = Hash(Int32, String).new
   @repo_commits = Hash(Int32, Int32).new
-  
+
   def initialize(@user : String,
                  @start_time : Time = @@default_start_time,
                  @end_time : Time = @@default_end_time)
     @events = push_events_for_user(@user)
     # @events = events_in_date_range(@start_time, @end_time)
-    
+
     # select unique events on repo id and make hash of id => name
-    @events.uniq { |e| e.repo.id }.each do |event|
+    @events.uniq( &.repo.id ).each do |event|
       @repo_names[event.repo.id] = event.repo.name
     end
 
     # count up all the commits per each repo
-    @events.map { |e| e.repo.id }.each do |repo_id|
+    @events.map( &.repo.id ).each do |repo_id|
       if @repo_commits[repo_id]?
         @repo_commits[repo_id] += 1
       else
@@ -31,19 +31,14 @@ class GithubTracker
     end
   end
 
-  getter repo_commits
+  getter repo_commits,
+         start_time,
+         end_time
 
   # Returns a list of events of type "PushEvent" for a given user
   private def push_events_for_user(username : String) : Array(GithubEvent)
     response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
     Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
-  end
-
-  # Filter events in a Time range, inclusive.
-  def events_in_date_range(from : Time, to : Time) : Array(GithubEvent)
-    @events.select do |event|
-      event.time >= from && event.time <= to
-    end
   end
 
   # Get an array of tuples with the repo Id and the count of commits.

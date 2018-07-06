@@ -20,7 +20,7 @@ describe "GithubUser" do
       result = GithubUser.from_yaml "name: tester\nusername: user"
       "#{result}".should eq "tester"
     end
-    
+
     it "should return the username if name is nil" do
       result = GithubUser.from_yaml "username: tester"
       str = "#{result.to_s}"
