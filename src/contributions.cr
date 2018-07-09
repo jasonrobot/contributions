@@ -1,8 +1,19 @@
+require "logger"
+
 require "./Contributions/GithubTracker"
 
 # Main entry point
 
 # users_file_paths = %w(users.yml ~/.config/github-tracker/users.yml)
+
+# Gets the LOG_LEVEL env var, or returns level WARN
+macro get_log_level
+  begin
+    Logger::Severity.parse ENV["LOG_LEVEL"]
+  rescue
+    Logger::WARN
+  end
+end
 
 # Loads the users yaml file, or raises an exception to crash the app.
 def get_users_file : String

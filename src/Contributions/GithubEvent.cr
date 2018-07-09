@@ -2,6 +2,7 @@ require "json"
 
 # The event object that is returned from the github events API
 class GithubEvent
+
   # The repo object that is passed back in the event object
   class Repo
     JSON.mapping(
@@ -41,4 +42,9 @@ class GithubEvent
     actor: Actor,
     payload: Payload?,
   )
+
+  def in_date_range(start_time, end_time) : Bool
+    (@time > start_time) && (@time < end_time)
+  end
+  
 end

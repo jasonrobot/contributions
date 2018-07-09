@@ -1,4 +1,6 @@
 require "http/client"
+require "logger"
+
 require "./GithubUser"
 require "./GithubEvent"
 
@@ -10,9 +12,14 @@ class GithubTracker
   @repo_names = Hash(Int32, String).new
   @repo_commits = Hash(Int32, Int32).new
 
+  @logger = Logger.new(STDOUT)
+
   def initialize(@user : String,
                  @start_time : Time = @@default_start_time,
                  @end_time : Time = @@default_end_time)
+    
+    @logger.level = get_log_level
+    
     @events = push_events_for_user(@user)
     # @events = events_in_date_range(@start_time, @end_time)
 
@@ -29,12 +36,18 @@ class GithubTracker
         @repo_commits[repo_id] = 1
       end
     end
+
+    @logger.info "Tracking from #{@start_time} till #{@end_time}"
+    @events.each do |event|
+      puts event.in_date_range @start_time, @end_time
+    end
+      
   end
 
   getter repo_commits,
          start_time,
          end_time
-
+  
   # Returns a list of events of type "PushEvent" for a given user
   private def push_events_for_user(username : String) : Array(GithubEvent)
     response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
