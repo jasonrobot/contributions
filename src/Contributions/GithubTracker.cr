@@ -52,7 +52,13 @@ class GithubTracker
   # Returns a list of events of type "PushEvent" for a given user
   private def push_events_for_user(username : String) : Array(GithubEvent)
     response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
-    Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
+    begin
+      Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
+    rescue ex
+      @logger.fatal "Couldn't parse JSON response into array."
+      @logger.debug response_body
+      raise ex
+    end
   end
 
   # Get an array of tuples with the repo Id and the count of commits.
