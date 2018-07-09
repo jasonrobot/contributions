@@ -6,8 +6,8 @@ require "./GithubEvent"
 
 # Track events for a github user.
 class GithubTracker
-  @@default_start_time : Time = Time.utc_now
-  @@default_end_time : Time = Time.utc_now - Time::Span.new(hours: 24, minutes: 0, seconds: 0)
+  @@default_newest : Time = Time.utc_now
+  @@default_oldest : Time = Time.utc_now - Time::Span.new(hours: 24, minutes: 0, seconds: 0)
   @events = Array(GithubEvent).new
   @repo_names = Hash(Int32, String).new
   @repo_commits = Hash(Int32, Int32).new
@@ -15,13 +15,13 @@ class GithubTracker
   @logger = Logger.new(STDOUT)
 
   def initialize(@user : String,
-                 @start_time : Time = @@default_start_time,
-                 @end_time : Time = @@default_end_time)
+                 @newest : Time = @@default_newest,
+                 @oldest : Time = @@default_oldest)
     
     @logger.level = get_log_level
     
-    @events = push_events_for_user(@user)
-    # @events = events_in_date_range(@start_time, @end_time)
+    @events = push_events_for_user(@user).select( &.in_date_range @newest, @oldest )
+    # @events = events_in_date_range(@newest, @oldest)
 
     # select unique events on repo id and make hash of id => name
     @events.uniq( &.repo.id ).each do |event|
@@ -37,16 +37,17 @@ class GithubTracker
       end
     end
 
-    @logger.info "Tracking from #{@start_time} till #{@end_time}"
+    @logger.debug "Tracking from #{@newest} till #{@oldest}"
     @events.each do |event|
-      puts event.in_date_range @start_time, @end_time
+      @logger.debug event.time
+      @logger.debug event.in_date_range @newest, @oldest
     end
       
   end
 
   getter repo_commits,
-         start_time,
-         end_time
+         newest,
+         oldest
   
   # Returns a list of events of type "PushEvent" for a given user
   private def push_events_for_user(username : String) : Array(GithubEvent)
