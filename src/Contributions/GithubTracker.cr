@@ -51,13 +51,17 @@ class GithubTracker
   
   # Returns a list of events of type "PushEvent" for a given user
   private def push_events_for_user(username : String) : Array(GithubEvent)
-    response_body = HTTP::Client.get("https://api.github.com/users/#{username}/events").body
+    url = "https://api.github.com/users/#{username}/events"
     begin
+      response_body = HTTP::Client.get(url).body
       Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }
-    rescue ex
+    rescue http_ex : Socket::Error
+      @logger.fatal "Couldn't get url: #{url}"
+      raise http_ex
+    rescue json_ex : JSON::ParseException
       @logger.fatal "Couldn't parse JSON response into array."
       @logger.debug response_body
-      raise ex
+      raise json_ex
     end
   end
 
