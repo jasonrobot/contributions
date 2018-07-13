@@ -50,7 +50,11 @@ class GithubTracker
   getter repo_commits,
          earlier,
          later
-  
+
+  def repo_commits?
+    !@repo_commits.empty?
+  end
+
   # Returns a list of events of type "PushEvent" for a given user
   private def push_events_for_user(username : String) : Array(GithubEvent)
     url = "https://api.github.com/users/#{username}/events"

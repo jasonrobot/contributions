@@ -39,7 +39,7 @@ end
 
 # Run the commit counter
 def main
-  user_list : Array(GithubUser) = load_user_list
+  user_list : Array(GithubUser) = load_user_list.shuffle
 
   later_time = Time.utc_now
   earlier_time = later_time.at_beginning_of_day
@@ -53,8 +53,12 @@ def main
 
     tracker = GithubTracker.new(user.username, earlier_time, later_time)
 
-    tracker.repo_commits.each do |repo_id, commit_count|
-      puts "Pushed #{commit_count} commits to https://github.com/#{tracker.repo_name repo_id}"
+    if tracker.repo_commits?
+      tracker.repo_commits.each do |repo_id, commit_count|
+        puts "Pushed #{commit_count} commits to https://github.com/#{tracker.repo_name repo_id}"
+      end
+    else
+      puts "No commits today!"
     end
 
     puts ""
