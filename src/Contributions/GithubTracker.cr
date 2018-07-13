@@ -6,8 +6,9 @@ require "./GithubEvent"
 
 # Track events for a github user.
 class GithubTracker
-  @@default_newest : Time = Time.utc_now
-  @@default_oldest : Time = Time.utc_now.at_beginning_of_day
+  @@default_later : Time = Time.utc_now
+  @@default_earlier : Time = Time.utc_now.at_beginning_of_day
+  
   @events = Array(GithubEvent).new
   @repo_names = Hash(Int32, String).new
   @repo_commits = Hash(Int32, Int32).new
@@ -15,13 +16,13 @@ class GithubTracker
   @logger = Logger.new(STDOUT)
 
   def initialize(@user : String,
-                 @newest : Time = @@default_newest,
-                 @oldest : Time = @@default_oldest)
+                 @earlier : Time = @@default_earlier,
+                 @later : Time = @@default_later)
     
     @logger.level = get_log_level
     
-    @events = push_events_for_user(@user).select( &.in_date_range @newest, @oldest )
-    # @events = events_in_date_range(@newest, @oldest)
+    @events = push_events_for_user(@user).select( &.in_date_range @earlier, @later )
+    # @events = events_in_date_range(@earlier, @later)
 
     # select unique events on repo id and make hash of id => name
     @events.uniq( &.repo.id ).each do |event|
@@ -37,21 +38,23 @@ class GithubTracker
       end
     end
 
-    @logger.debug "Tracking from #{@newest} till #{@oldest}"
+    @logger.debug "Tracking from #{@earlier} till #{@later}"
+    @logger.debug "#{@events.size} total events"
     @events.each do |event|
       @logger.debug event.time
-      @logger.debug event.in_date_range @newest, @oldest
+      @logger.debug event.in_date_range @earlier, @later
     end
       
   end
 
   getter repo_commits,
-         newest,
-         oldest
+         earlier,
+         later
   
   # Returns a list of events of type "PushEvent" for a given user
   private def push_events_for_user(username : String) : Array(GithubEvent)
     url = "https://api.github.com/users/#{username}/events"
+    @logger.debug "#url is #{url}"
     begin
       response_body = HTTP::Client.get(url).body
       Array(GithubEvent).from_json(response_body).select { |event| event.type == "PushEvent" }

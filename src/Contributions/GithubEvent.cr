@@ -43,8 +43,7 @@ class GithubEvent
     payload: Payload?,
   )
 
-  def in_date_range(newest, oldest) : Bool
-    (@time > oldest) && (@time < newest)
+  def in_date_range(earlier, later) : Bool
+    (@time > earlier) && (@time < later)
   end
-  
 end

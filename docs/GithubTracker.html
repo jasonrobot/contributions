@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.24.2">
+<meta name="generator" content="Crystal Docs 0.25.0">
 
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -115,7 +115,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/jasonrobot/contributions/blob/d983063e6ab6986a27b69b75070368eead593db9/src/Contributions/GithubTracker.cr#L6" target="_blank">Contributions/GithubTracker.cr</a>
+      <a href="https://github.com/jasonrobot/contributions/blob/74ac0203eaeb3385e3f50a1f7b7da442e1f511d0/src/Contributions/GithubTracker.cr#L8" target="_blank">Contributions/GithubTracker.cr</a>
     
     <br/>
   
@@ -128,7 +128,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28user%3AString%2Cstart_time%3ATime%3D%40%40default_start_time%2Cend_time%3ATime%3D%40%40default_end_time%29-class-method" class="signature"><strong>.new</strong>(user : String, start_time : Time = @@default_start_time, end_time : Time = @@default_end_time)</a>
+        <a href="#new%28user%3AString%2Cearlier%3ATime%3D%40%40default_earlier%2Clater%3ATime%3D%40%40default_later%29-class-method" class="signature"><strong>.new</strong>(user : String, earlier : Time = @@default_earlier, later : Time = @@default_later)</a>
         
       </li>
     
@@ -149,7 +149,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#end_time%3ATime-instance-method" class="signature"><strong>#end_time</strong> : Time</a>
+        <a href="#earlier%3ATime-instance-method" class="signature"><strong>#earlier</strong> : Time</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#later%3ATime-instance-method" class="signature"><strong>#later</strong> : Time</a>
         
       </li>
     
@@ -162,11 +167,6 @@
         <a href="#repo_name%28repo_id%3AInt32%29%3AString-instance-method" class="signature"><strong>#repo_name</strong>(repo_id : Int32) : String</a>
         
           <div class="summary"><p>Given a REPO_ID, get the name of the repo</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#start_time%3ATime-instance-method" class="signature"><strong>#start_time</strong> : Time</a>
         
       </li>
     
@@ -203,18 +203,18 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(user:String,start_time:Time=@@default_start_time,end_time:Time=@@default_end_time)-class-method">
+    <div class="entry-detail" id="new(user:String,earlier:Time=@@default_earlier,later:Time=@@default_later)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(user : String, start_time : Time = @@default_start_time, end_time : Time = @@default_end_time)
+        def self.<strong>new</strong>(user : String, earlier : Time = @@default_earlier, later : Time = @@default_later)
 
-        <a class="method-permalink" href="#new%28user%3AString%2Cstart_time%3ATime%3D%40%40default_start_time%2Cend_time%3ATime%3D%40%40default_end_time%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28user%3AString%2Cearlier%3ATime%3D%40%40default_earlier%2Clater%3ATime%3D%40%40default_later%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/jasonrobot/contributions/blob/d983063e6ab6986a27b69b75070368eead593db9/src/Contributions/GithubTracker.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/jasonrobot/contributions/blob/74ac0203eaeb3385e3f50a1f7b7da442e1f511d0/src/Contributions/GithubTracker.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -240,23 +240,39 @@ Useful for printing results.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/jasonrobot/contributions/blob/d983063e6ab6986a27b69b75070368eead593db9/src/Contributions/GithubTracker.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/jasonrobot/contributions/blob/74ac0203eaeb3385e3f50a1f7b7da442e1f511d0/src/Contributions/GithubTracker.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="end_time:Time-instance-method">
+    <div class="entry-detail" id="earlier:Time-instance-method">
       <div class="signature">
         
-        def <strong>end_time</strong> : Time
+        def <strong>earlier</strong> : Time
 
-        <a class="method-permalink" href="#end_time%3ATime-instance-method">#</a>
+        <a class="method-permalink" href="#earlier%3ATime-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/jasonrobot/contributions/blob/d983063e6ab6986a27b69b75070368eead593db9/src/Contributions/GithubTracker.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/jasonrobot/contributions/blob/74ac0203eaeb3385e3f50a1f7b7da442e1f511d0/src/Contributions/GithubTracker.cr#L50" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="later:Time-instance-method">
+      <div class="signature">
+        
+        def <strong>later</strong> : Time
+
+        <a class="method-permalink" href="#later%3ATime-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/jasonrobot/contributions/blob/74ac0203eaeb3385e3f50a1f7b7da442e1f511d0/src/Contributions/GithubTracker.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -272,7 +288,7 @@ Useful for printing results.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/jasonrobot/contributions/blob/d983063e6ab6986a27b69b75070368eead593db9/src/Contributions/GithubTracker.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/jasonrobot/contributions/blob/74ac0203eaeb3385e3f50a1f7b7da442e1f511d0/src/Contributions/GithubTracker.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -290,23 +306,7 @@ Useful for printing results.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/jasonrobot/contributions/blob/d983063e6ab6986a27b69b75070368eead593db9/src/Contributions/GithubTracker.cr#L55" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="start_time:Time-instance-method">
-      <div class="signature">
-        
-        def <strong>start_time</strong> : Time
-
-        <a class="method-permalink" href="#start_time%3ATime-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/jasonrobot/contributions/blob/d983063e6ab6986a27b69b75070368eead593db9/src/Contributions/GithubTracker.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/jasonrobot/contributions/blob/74ac0203eaeb3385e3f50a1f7b7da442e1f511d0/src/Contributions/GithubTracker.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>

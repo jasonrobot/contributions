@@ -41,17 +41,17 @@ end
 def main
   user_list : Array(GithubUser) = load_user_list
 
-  start_time = Time.utc_now
-  end_time = Time.utc_now - Time::Span.new(hours: 24, minutes: 0, seconds: 0)
+  later_time = Time.utc_now
+  earlier_time = later_time.at_beginning_of_day
 
   puts ""
-  puts "From #{start_time} til #{end_time}"
+  puts "From #{earlier_time} till #{later_time}"
   puts ""
 
   user_list.each do |user|
     puts "#{user.to_s}: https://github.com/#{user.username}"
 
-    tracker = GithubTracker.new(user.username, start_time, end_time)
+    tracker = GithubTracker.new(user.username, earlier_time, later_time)
 
     tracker.repo_commits.each do |repo_id, commit_count|
       puts "Pushed #{commit_count} commits to https://github.com/#{tracker.repo_name repo_id}"
