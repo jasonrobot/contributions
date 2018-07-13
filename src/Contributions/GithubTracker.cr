@@ -7,7 +7,7 @@ require "./GithubEvent"
 # Track events for a github user.
 class GithubTracker
   @@default_newest : Time = Time.utc_now
-  @@default_oldest : Time = Time.utc_now - Time::Span.new(hours: 24, minutes: 0, seconds: 0)
+  @@default_oldest : Time = Time.utc_now.at_beginning_of_day
   @events = Array(GithubEvent).new
   @repo_names = Hash(Int32, String).new
   @repo_commits = Hash(Int32, Int32).new
