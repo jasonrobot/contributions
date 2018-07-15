@@ -41,8 +41,8 @@ end
 def main
   user_list : Array(GithubUser) = load_user_list.shuffle
 
-  later_time = Time.utc_now
-  earlier_time = later_time.at_beginning_of_day
+  later_time = Time.now.to_utc
+  earlier_time = Time.now.at_beginning_of_day.to_utc
 
   puts ""
   puts "From #{earlier_time} till #{later_time}"

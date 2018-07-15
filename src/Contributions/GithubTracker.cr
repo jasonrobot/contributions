@@ -6,8 +6,8 @@ require "./GithubEvent"
 
 # Track events for a github user.
 class GithubTracker
-  @@default_later : Time = Time.utc_now
-  @@default_earlier : Time = Time.utc_now.at_beginning_of_day
+  @@default_later : Time = Time.now.to_utc
+  @@default_earlier : Time = Time.now.at_beginning_of_day.to_utc
   
   @events = Array(GithubEvent).new
   @repo_names = Hash(Int32, String).new
