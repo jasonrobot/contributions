@@ -2,9 +2,9 @@ CC=crystal
 
 DEBUG_FLAGS := -debug
 
-MAIN_FILE = src/contributions.cr
-SRC_DIR := src/Contributions
-SRC_FILES := $(wildcard src/Contributions/*.cr)
+MAIN_FILE = src/main.cr
+SRC_DIR := src/GithubTracker
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cr)
 
 USERS_YML := users.yml
 

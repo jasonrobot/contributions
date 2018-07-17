@@ -1,6 +1,6 @@
 require "logger"
 
-require "./Contributions/GithubTracker"
+require "./GithubTracker/Tracker"
 
 # Main entry point
 
