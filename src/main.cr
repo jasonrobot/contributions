@@ -1,6 +1,7 @@
 require "logger"
 
 require "./GithubTracker/Tracker"
+require "./GithubTrackerOptions"
 
 # Main entry point
 
@@ -38,11 +39,14 @@ def load_user_list : Array(GithubUser)
 end
 
 # Run the commit counter
-def main
+def main()
+
+  options = GithubTrackerOptions.new ARGV
+  
   user_list : Array(GithubUser) = load_user_list.shuffle
 
-  later_time = Time.now.to_utc
-  earlier_time = Time.now.at_beginning_of_day.to_utc
+  later_time = options.later_time
+  earlier_time = options.earlier_time
 
   puts ""
   puts "From #{earlier_time} till #{later_time}"

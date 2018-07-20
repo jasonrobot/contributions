@@ -2,7 +2,9 @@ CC=crystal
 
 DEBUG_FLAGS := -debug
 
+MAIN_DIR = src
 MAIN_FILE = src/main.cr
+MAIN_FILES = $(wildcard $(MAIN_DIR)/*.cr)
 SRC_DIR := src/GithubTracker
 SRC_FILES := $(wildcard $(SRC_DIR)/*.cr)
 
@@ -13,11 +15,11 @@ TARGET := github-tracker
 LOCAL_BIN := ~/bin/
 CONFIG_DIR := ~/.config/github-tracker/
 
-$(TARGET): $(MAIN_FILE) $(SRC_FILES)
+$(TARGET): $(MAIN_FILES) $(SRC_FILES)
 	$(CC) build $(MAIN_FILE) -o $(TARGET)
 
 # learning is hard!
-help: $(MAIN_FILE) $(SRC_FILES)
+help: $(MAIN_FILES) $(SRC_FILES)
 	@echo $@
 	@echo $^
 	@echo $(SRC_DIR)
@@ -35,5 +37,5 @@ install: $(TARGET)
 run: $(TARGET)
 	$(CC) run $(MAIN_FILE)
 
-docs: $(MAIN_FILE) $(SRC_FILES)
+docs: $(MAIN_FILES) $(SRC_FILES)
 	$(CC) docs
