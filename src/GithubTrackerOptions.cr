@@ -13,7 +13,7 @@ class GithubTrackerOptions
         @earlier_time = @format.parse time
       end
       parser.on("-e", "--end", "End time (local)") do |time|
-        @earlier_time = @format.parse time
+        @later_time = @format.parse time
       end
       parser.on("-d", "--days-ago", "How many days ago to track from.") do |days|
         span = Time::Span.new(days: 1, hours: 0, minutes: 0, seconds: 0)

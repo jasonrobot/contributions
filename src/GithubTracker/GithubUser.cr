@@ -11,10 +11,10 @@ class GithubUser
   )
 
   def to_s(io : IO)
-    if name.nil?
-      io.print @username
-    else
+    unless name.nil?
       io.print @name
+    else
+      io.print @username
     end
   end
 end
