@@ -15,8 +15,10 @@ class GithubTrackerOptions
       parser.on("-e", "--end", "End time (local)") do |time|
         @later_time = @format.parse time
       end
-      parser.on("-d", "--days-ago", "How many days ago to track from.") do |days|
-        span = Time::Span.new(days: 1, hours: 0, minutes: 0, seconds: 0)
+      parser.on("-d DAYS", "--days-ago=DAYS", "How many days ago to track from.") do |days_arg|
+        puts days_arg
+        days = days_arg.to_i
+        span = Time::Span.new(days: days, hours: 0, minutes: 0, seconds: 0)
         @later_time = @later_time - span
         @earlier_time = @earlier_time - span
       end
