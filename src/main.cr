@@ -38,34 +38,41 @@ def load_user_list : Array(GithubUser)
   end
 end
 
+# Use a GithubTracker to track a user, and print the info from it to STDOUT.
+def print_tracking_for_user(user : GithubUser, earlier_time, later_time)
+  puts "#{user.to_s}: https://github.com/#{user.username}"
+
+  tracker = GithubTracker.new(user.username, earlier_time, later_time)
+
+  if tracker.repo_commits?
+    tracker.repo_commits.each do |repo_id, commit_count|
+      puts "Pushed #{commit_count} commits to https://github.com/#{tracker.repo_name repo_id}"
+    end
+  else
+    puts "No commits today!"
+  end
+end
+
 # Run the commit counter
 def main()
 
   options = GithubTrackerOptions.new ARGV
+
+  unless options.quit?
   
-  user_list : Array(GithubUser) = load_user_list.shuffle
+    user_list : Array(GithubUser) = load_user_list.shuffle
 
-  later_time = options.later_time
-  earlier_time = options.earlier_time
-
-  puts ""
-  puts "From #{earlier_time} till #{later_time}"
-  puts ""
-
-  user_list.each do |user|
-    puts "#{user.to_s}: https://github.com/#{user.username}"
-
-    tracker = GithubTracker.new(user.username, earlier_time, later_time)
-
-    if tracker.repo_commits?
-      tracker.repo_commits.each do |repo_id, commit_count|
-        puts "Pushed #{commit_count} commits to https://github.com/#{tracker.repo_name repo_id}"
-      end
-    else
-      puts "No commits today!"
-    end
+    later_time = options.later_time
+    earlier_time = options.earlier_time
 
     puts ""
+    puts "From #{earlier_time} till #{later_time}"
+    puts ""
+
+    user_list.each do |user|
+      print_tracking_for_user(user, earlier_time, later_time)
+      puts ""
+    end
   end
 end
 
