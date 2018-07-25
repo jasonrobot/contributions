@@ -58,9 +58,19 @@ def main()
 
   options = GithubTrackerOptions.new ARGV
 
+  user_list : Array(GithubUser) = load_user_list.shuffle
+
+  if options.specific_user?
+    user_list = user_list.select { |user| user.username == options.user }
+  end
+
+  if options.list_users?
+    user_list.each do |user|
+      puts "#{user.name}: #{user.username}"
+    end
+  end
+
   unless options.quit?
-  
-    user_list : Array(GithubUser) = load_user_list.shuffle
 
     later_time = options.later_time
     earlier_time = options.earlier_time

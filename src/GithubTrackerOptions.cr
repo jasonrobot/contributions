@@ -7,8 +7,11 @@ require "option_parser"
 class GithubTrackerOptions
 
   getter later_time : Time = Time.now.at_end_of_day.to_utc,
-         earlier_time : Time = Time.now.at_beginning_of_day.to_utc
-  getter? quit : Bool = false
+         earlier_time : Time = Time.now.at_beginning_of_day.to_utc,
+         user : String = ""
+  getter? quit : Bool = false,
+          specific_user : Bool = false,
+          list_users : Bool = false
 
   @format : Time::Format = Time::Format.new("%Y-%m-%dT%H:%M:%SZ", Time::Location.local)
   
@@ -30,6 +33,16 @@ class GithubTrackerOptions
         span = Time::Span.new(days: days, hours: 0, minutes: 0, seconds: 0)
         @later_time = @later_time - span
         @earlier_time = @earlier_time - span
+      end
+
+      parser.on("-u USER", "--user=USER", "Which user to track.") do |username|
+        @user = username
+        @specific_user = true
+      end
+
+      parser.on("--list-users", "List all users in the config file.") do
+        @list_users = true
+        @quit = true
       end
 
       parser.on("-h", "--help", "Show this help") do
