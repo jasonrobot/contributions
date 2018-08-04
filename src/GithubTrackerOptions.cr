@@ -11,7 +11,8 @@ class GithubTrackerOptions
          user : String = ""
   getter? quit : Bool = false,
           specific_user : Bool = false,
-          list_users : Bool = false
+          list_users : Bool = false,
+          all : Bool = false
 
   @format : Time::Format = Time::Format.new("%Y-%m-%dT%H:%M:%SZ", Time::Location.local)
   
@@ -28,7 +29,6 @@ class GithubTrackerOptions
       end
 
       parser.on("-d DAYS", "--days-ago=DAYS", "How many days ago to track from.") do |days_arg|
-        puts days_arg
         days = days_arg.to_i
         span = Time::Span.new(days: days, hours: 0, minutes: 0, seconds: 0)
         @later_time = @later_time - span
@@ -38,6 +38,10 @@ class GithubTrackerOptions
       parser.on("-u USER", "--user=USER", "Which user to track.") do |username|
         @user = username
         @specific_user = true
+      end
+
+      parser.on("-a", "--all", "Show all users, even if they haven't pushed commits in the period queried.") do
+        @all = true
       end
 
       parser.on("--list-users", "List all users in the config file.") do

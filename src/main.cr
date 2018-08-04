@@ -40,16 +40,20 @@ end
 
 # Use a GithubTracker to track a user, and print the info from it to STDOUT.
 def print_tracking_for_user(user : GithubUser, earlier_time, later_time)
-  puts "#{user.to_s}: https://github.com/#{user.username}"
-
   tracker = GithubTracker.new(user.username, earlier_time, later_time)
 
   if tracker.repo_commits?
-    tracker.repo_commits.each do |repo_id, commit_count|
-      puts "Pushed #{commit_count} commits to https://github.com/#{tracker.repo_name repo_id}"
+    puts "#{user.to_s}: https://github.com/#{user.username}"
+
+    if tracker.repo_commits?
+      tracker.repo_commits.each do |repo_id, commit_count|
+        puts "Pushed #{commit_count} commits to https://github.com/#{tracker.repo_name repo_id}"
+      end
+    else
+      puts "No commits today!"
     end
-  else
-    puts "No commits today!"
+
+    puts ""
   end
 end
 
@@ -81,7 +85,6 @@ def main()
 
     user_list.each do |user|
       print_tracking_for_user(user, earlier_time, later_time)
-      puts ""
     end
   end
 end
